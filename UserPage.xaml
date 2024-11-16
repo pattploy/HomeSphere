@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_1111.UserPage"
+             xmlns:local="clr-namespace:_1111.ViewModels"
+             Title="UserPage">
+    <Grid RowDefinitions=".2*,.8*">
+        <Image Source="Images\pupu.png.png" 
+                Aspect="AspectFill" 
+                Opacity="1" 
+                Margin="0"/>
+        <VerticalStackLayout Grid.Row="0" Padding="20">
+            <Label Text="Parcel"></Label>
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5" >
+                <Button Grid.Column="0" Text="All"
+                        Command="{Binding All }"></Button>
+                <Button Grid.Column="1" Text="Waiting to Confirm"
+                        Command="{Binding WaitingCommand }"></Button>
+                <Button Grid.Column="2" Text="Confirm"
+                        Command="{Binding ConfirmCommand }"></Button>
+            </Grid>
+        </VerticalStackLayout>
+        
+        <ScrollView Padding="20" Grid.Row="1">
+            <CollectionView  ItemsSource="{Binding Users}"
+                             SelectionMode="Single"
+                             SelectedItem="{Binding CurrentUser}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+
+                            <Grid ColumnDefinitions="*,*,*">
+                                <Label Grid.Column="0"
+                                       Text="{Binding RoomNo}"></Label>
+                                <Label Grid.Column="1"
+                                       Text="{Binding Date}"></Label>
+                                <Label Grid.Column="2"
+                                       Text="{Binding ParcelNo}"></Label>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentPage>
